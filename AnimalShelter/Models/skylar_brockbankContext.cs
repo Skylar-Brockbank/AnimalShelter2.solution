@@ -15,7 +15,7 @@ namespace AnimalShelter.Models
         new Animal {AnimalId = 2, Name = "Cleocatra", Sex="F", Age=4, Type = "cat"},
         new Animal {AnimalId = 3, Name = "Barkus Aurelius", Sex="M", Age=8, Type = "dog"},
         new Animal {AnimalId = 4, Name = "Droolius Caeser", Sex="M", Age=5, Type = "dog"},
-        new Animal {AnimalId = 1, Name = "Ada Loves-Laces", Sex="F", Age=6, Type = "cat"}
+        new Animal {AnimalId = 5, Name = "Ada Loves-Laces", Sex="F", Age=6, Type = "cat"}
       );
     }
   }
