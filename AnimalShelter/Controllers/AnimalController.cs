@@ -41,6 +41,33 @@ namespace AnimalShelter.Controllers
       await _db.SaveChangesAsync();
       return CreatedAtAction("Post", new{id=input.AnimalId}, input);
     }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Animal target)
+    {
+      if (id != target.AnimalId)
+      {
+        return BadRequest();
+      }
+      _db.Entry(target).State = EntityState.Modified;
+
+      try
+      {
+        await _db.SaveChangesAsync();
+      }
+      catch(DbUpdateConcurrencyException)
+      {
+        if(!_db.Animals.Any(a=>a.AnimalId==id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+      
+      return RedirectToAction("Get", new{id=id});
+    }
 
   }
 }
