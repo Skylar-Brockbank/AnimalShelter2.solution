@@ -24,7 +24,8 @@ namespace AnimalShelter
                 //new
                 services.AddCors(options => 
                 {
-                    options.AddDefaultPolicy(builder=>builder.AllowAnyOrigin());
+                    options.AddDefaultPolicy(builder=>builder.WithOrigins("Https://localhost:5000"));
+                    options.AddPolicy("Open", builder => builder.AllowAnyOrigin());
                 }
                 );
                 //end new

@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AnimalShelter.Models;
-using System.Text.Json;
 using Microsoft.AspNetCore.Cors;
-using System;
+
 
 namespace AnimalShelter.Controllers
 {
@@ -19,11 +18,13 @@ namespace AnimalShelter.Controllers
     {
       _db=db;
     }
+    [EnableCors("Open")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Animal>>> Get()
     {
       return await _db.Animals.ToListAsync();
     }
+    [EnableCors("Open")]
     [HttpGet("{id}")]
     public async Task<ActionResult<Animal>> Get(int id)
     {
