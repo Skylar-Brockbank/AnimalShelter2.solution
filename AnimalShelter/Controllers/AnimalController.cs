@@ -26,7 +26,7 @@ namespace AnimalShelter.Controllers
     }
     [EnableCors("Open")]
     [HttpGet("{id}")]
-    public async Task<ActionResult<Animal>> Get(int id)
+    public async Task<ActionResult<Animal>> GetById(int id)
     {
       Animal target = await _db.Animals.FindAsync(id);
       if(target == null)
@@ -34,6 +34,14 @@ namespace AnimalShelter.Controllers
         return NotFound();
       }
       return target;
+    }
+    [EnableCors("Open")]
+    [HttpGet("type/{type}")]
+    public async Task<ActionResult<IEnumerable<Animal>>> GetByType(string type)
+    {
+      var query = _db.Animals.AsQueryable();
+      query = query.Where(a=>a.Type == type);
+      return await query.ToListAsync();
     }
     [HttpPost]
     public async Task<ActionResult<Animal>> Post(Animal input)
