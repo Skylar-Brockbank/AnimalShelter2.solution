@@ -68,6 +68,18 @@ namespace AnimalShelter.Controllers
       
       return RedirectToAction("Get", new{id=id});
     }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+      Animal target = await _db.Animals.FindAsync(id);
+      if(target == null)
+      {
+        return NotFound();
+      }
+      _db.Animals.Remove(target);
+      await _db.SaveChangesAsync();
+      return NoContent();
+    }
 
   }
 }
